@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(int argc, const char **argv) {
-  if(argc < 4){
+  if(argc < 5){
     cout << "gene [func_name] [min] [max]";
     exit(1);
   }
@@ -23,7 +23,8 @@ int main(int argc, const char **argv) {
   else if(func == "rastrigin")  opt = rastrigin;
 
   auto problem = OptiProblem(opt, atoi(argv[2]), atoi(argv[3]));
-  for (int i = 0; i < 1; ++i) {
+  int numexecs = atoi(argv[4]);
+  for (int i = 0; i < numexecs; ++i) {
     auto algo = GeneticAlgorithm(1000, 300 * 1000, problem);
     while(algo.iterate(100, 10)){}
     GeneticAlgorithm::Individual best = algo.getBest();
