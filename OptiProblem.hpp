@@ -12,16 +12,21 @@
 #define GENSIZE 15U
 #define MAX_NUM ((1U << GENSIZE) - 1)
 
-enum OptiFunction {sphere, ellipsoid, zakharov};
+enum OptiFunction {sphere, ellipsoid, zakharov, rosenbrock, ackley, griewank, rastrigin};
 
 class OptiProblem{
 private:
   OptiFunction __function;
   double __min, __max, __step_size;
-  //eval functions
+  //eval Unimodal functions
   double __evalSphere(std::vector<double> &vars);
   double __evalEllipsoid(std::vector<double> &vars);
   double __evalZakharov(std::vector<double> &vars);
+  //eval multimodal functions
+  double __evalRosenbrock(std::vector<double> &vars);
+  double __evalAckley(std::vector<double> &vars);
+  double __evalGriewank(std::vector<double> &vars);
+  double __evalRastrigin(std::vector<double> &vars);
   std::vector<double> genoToFeno(std::vector<std::bitset<GENSIZE>> &geno);
 public:
   double evalFunction(std::vector<std::bitset<GENSIZE>> &geno);

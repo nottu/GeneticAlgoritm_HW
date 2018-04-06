@@ -22,6 +22,7 @@ private:
 public:
   Individual getBest();
   GeneticAlgorithm(int pop_size, int max_evals, OptiProblem problem);
+  int getEvals();
   bool iterate(int n_replace, int n_tourney);
 };
 

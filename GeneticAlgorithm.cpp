@@ -16,12 +16,16 @@ GeneticAlgorithm::GeneticAlgorithm(int pop_size, int max_ev,  OptiProblem proble
     max_evals--;
   }
 }
-
+int GeneticAlgorithm::getEvals(){
+  return max_evals;
+}
 bool GeneticAlgorithm::iterate(int n_replace, int n_tourney){
   sort(population.begin(), population.end(), [](Individual &i1, Individual &i2){
     return (i1.get_value()<i2.get_value());
   });
   double best = population[0].get_value();
+  if(best < 1E-3)
+    return false;
   double min_fit = population[n_replace].get_value();
   int replaced = 0;
   while(replaced < n_replace && max_evals){
